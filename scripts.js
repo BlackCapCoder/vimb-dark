@@ -59,22 +59,32 @@ document.onkeypress = function (e) {
   }
 }
 
-/* Scrolling */
-var epox = 0.01;
-var intervalId = -1;
+/* ===== Scrolling ===== */
+var epox        = 0.01
+  , intervalId  = -1
+  , lastTick    = (new Date ()).getTime()
+  , scrollSpeed = 2
+  , scrollDecay = 5;
+
 function scroll () {
-  if (intervalId == -1) intervalId = setInterval(scrollStep, 15);
+  if (intervalId != -1) return;
+  lastTick    = (new Date ()).getTime();
+  intervalId = setInterval(scrollStep, 1);
 }
 
-function scrollDown () { ySpeed = Math.max(ySpeed - 0.05, 0); }
-function scrollUp   () { ySpeed = Math.min(ySpeed + 0.05, 1); }
+function scrollDown (t) { ySpeed = Math.max(ySpeed - scrollSpeed * t, 0); }
+function scrollUp   (t) { ySpeed = Math.min(ySpeed + scrollSpeed * t, 1); }
 
 function scrollStep () {
-  if (jDown) scrollDown ();
-  if (kDown) scrollUp   ();
+  var now  = (new Date ()).getTime()
+    , tick = (now - lastTick) / 1000;
+  lastTick = now;
 
-  document.body.scrollTop += (0.5-ySpeed) * 50;
-  ySpeed = ySpeed * 0.9 + 0.5 * 0.1
+  if (jDown) scrollDown (tick);
+  if (kDown) scrollUp   (tick);
+
+  document.body.scrollTop += (0.5-ySpeed) * 2000 * tick;
+  ySpeed = ySpeed * (1-scrollDecay*tick) + 0.5 * scrollDecay*tick
 
   if (ySpeed < 0.5) {
     if (ySpeed > 0.5-epox) ySpeed = 0.5;
