@@ -11,4 +11,4 @@ My personal configuration of the vimb web browser.
 - Support for custom styling ala Stylish
 
 #### The following sites have custom themes
-- Youtube
+- Youtube (modified version of DarkTube v3 by Nass O)
