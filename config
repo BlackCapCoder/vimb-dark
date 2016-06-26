@@ -1,0 +1,21 @@
+set proxy=on8
+
+set smooth-scrolling=true
+set input-autohide=true
+set webinspector=true
+set javascript-can-access-clipboard=true
+set statusbar=false
+
+nnoremap j æ
+nnoremap k ø
+nnoremap space å
+
+shortcut-add g=https://www.google.com/search?q=$0
+shortcut-default g
+
+set input-bg-normal=#000
+set input-fg-normal=#FFF
+
+set completion-bg-normal=#111
+set completion-fg-normal=#FFF
+set completion-bg-active=#800
