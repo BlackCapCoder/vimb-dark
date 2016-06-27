@@ -1,10 +1,12 @@
-set proxy=on8
+set proxy=on
 
 set smooth-scrolling=true
 set input-autohide=true
 set webinspector=true
 set javascript-can-access-clipboard=true
 set statusbar=false
+#set accelerated-compositing=true
+set webgl=true
 
 nnoremap j æ
 nnoremap k ø
